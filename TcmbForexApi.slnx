@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/TcmbForexApi.Consumers/TcmbForexApi.Consumers.csproj" />
+    <Project Path="src/TcmbForexApi.Gateway/TcmbForexApi.Gateway.csproj" />
+    <Project Path="src/TcmbForexApi.ReadAPI/TcmbForexApi.ReadAPI.csproj" />
+    <Project Path="src/TcmbForexApi.WriteAPI/TcmbForexApi.WriteAPI.csproj" />
+  </Folder>
+</Solution>
