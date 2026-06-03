@@ -4,6 +4,6 @@ namespace TcmbForexApi.WriteAPI.Core.Repositories
 {
     public interface IForexRepository
     {
-        public Task<int> AddCurrencyAsync(Currency currency);
+        public Task<int> AddCurrencyAsync(ForexRate currency);
     }
 }

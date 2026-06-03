@@ -1,7 +1,9 @@
-namespace TcmbForexApi.WriteAPI.Business.DTOs
+namespace TcmbForexApi.Consumers.Business.Dtos
 {
-    public class CurrencyInsertDto
+    public class RateCreateDto
     {
+        public int RateId { get; set; }
+        public DateOnly Date { get; set; }
         public string Code { get; set; } = string.Empty;
         public int Unit { get; set; }
         public string Name { get; set; } = string.Empty;

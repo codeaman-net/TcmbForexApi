@@ -5,6 +5,6 @@ namespace TcmbForexApi.WriteAPI.Business.Abstract
 {
     public interface IForexService
     {
-        Task<BaseResponse> AddForexAsync(CurrencyInsertDto currenyInsertDto);
+        Task<BaseResponse> AddForexAsync(ForexRateInsertDto insertDto);
     }
 }

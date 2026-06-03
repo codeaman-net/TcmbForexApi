@@ -1,7 +1,9 @@
 namespace TcmbForexApi.WriteAPI.Core.Entities
 {
-    public class Currency : IEntity
+    public class ForexRate : IEntity
     {
+        public int Id { get; set; }
+        public DateOnly Date { get; set; }
         public string Code { get; set; } = string.Empty;
         public int Unit { get; set; }
         public string Name { get; set; } = string.Empty;

@@ -2,19 +2,24 @@ namespace TcmbForexApi.WriteAPI.Core.Handlers
 {
     public abstract class ServiceHandler
     {
-        protected async Task<BaseResponse> HandleAsync(Func<Task<BaseResponse>> action)
+        protected async Task<BaseResponse> ExecuteAsync(Func<Task<object>> action)
         {
             try
             {
-                return await action();
+                var data = await action();
+                
+                return new BaseResponse
+                {
+                    Success = true,
+                    Data = data
+                };
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                // Log the exception here if needed
                 return new BaseResponse
                 {
                     Success = false,
-                    Message = $"An error occurred: {ex.Message}"
+                    Message = "An error occurred while processing the request. Please try again later."
                 };
             }
         }

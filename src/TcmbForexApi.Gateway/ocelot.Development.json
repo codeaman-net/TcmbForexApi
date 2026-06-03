@@ -1,0 +1,77 @@
+{
+    "GlobalConfiguration": {
+        "BaseUrl": "http://localhost:5277"
+    },
+    "Routes": [
+        {
+            "UpstreamHttpMethod": [
+                "Get"
+            ],
+            "UpstreamPathTemplate": "/gateway/forex-rates?code={code}",
+            "DownstreamPathTemplate": "/read/forex-by-code?code={code}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5228
+                }
+            ]
+        },
+        {
+            "UpstreamHttpMethod": [
+                "Get"
+            ],
+            "UpstreamPathTemplate": "/gateway/forex-rates?date={date}",
+            "DownstreamPathTemplate": "/read/forex-by-date?date={date}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5228
+                }
+            ]
+        },
+        {
+            "UpstreamHttpMethod": [
+                "Get"
+            ],
+            "UpstreamPathTemplate": "/gateway/forex-rates?code={code}&date={date}",
+            "DownstreamPathTemplate": "/read/forex-by-code-and-date?code={code}&date={date}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5228
+                }
+            ]
+        },
+        {
+            "UpstreamHttpMethod": [
+                "Post"
+            ],
+            "UpstreamPathTemplate": "/gateway/write-forex-latest",
+            "DownstreamPathTemplate": "/write/forex-latest",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5067
+                }
+            ]
+        },
+        {
+            "UpstreamHttpMethod": [
+                "Post"
+            ],
+            "UpstreamPathTemplate": "/gateway/write-custom-forex",
+            "DownstreamPathTemplate": "/write/forex-custom",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5067
+                }
+            ]
+        }
+    ]
+}

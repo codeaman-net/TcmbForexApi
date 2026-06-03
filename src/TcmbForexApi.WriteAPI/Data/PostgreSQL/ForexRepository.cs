@@ -3,14 +3,15 @@ using TcmbForexApi.WriteAPI.Core.Repositories;
 
 namespace TcmbForexApi.WriteAPI.Data.PostgreSQL
 {
-    public class ForexRepository(IConfiguration configuration) : BaseRepository<Currency>(configuration), IForexRepository
+    public class ForexRepository(IConfiguration configuration) : BaseRepository<ForexRate>(configuration), IForexRepository
     {
-        public async Task<int> AddCurrencyAsync(Currency currency)
+        public async Task<int> AddCurrencyAsync(ForexRate currency)
         {
-            string query = "INSERT INTO forex (code, unit, name, forexbuying, forexselling, banknotebuyying, banknoteselling, crossrateusd) VALUES (@Code, @Unit, @Name, @ForexBuying, @ForexSelling, @BanknoteBuying, @BanknoteSelling, @CrossRateUSD)";
+            string query = "INSERT INTO forex_rates (rate_date, code, unit, name, forex_buying, forex_selling, banknote_buying, banknote_selling, cross_rate_usd) VALUES (@Date, @Code, @Unit, @Name, @ForexBuying, @ForexSelling, @BanknoteBuying, @BanknoteSelling, @CrossRateUSD) ON CONFLICT (rate_date, code) DO NOTHING;";
 
             object parameters = new
             {
+                currency.Date,
                 currency.Code,
                 currency.Unit,
                 currency.Name,

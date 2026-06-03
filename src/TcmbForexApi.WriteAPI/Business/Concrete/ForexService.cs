@@ -9,12 +9,11 @@ namespace TcmbForexApi.WriteAPI.Business.Concrete
 {
     public class ForexService(IForexRepository forexRepository) : ServiceHandler, IForexService
     {
-        public async Task<BaseResponse> AddForexAsync(CurrencyInsertDto currenyInsertDto)
+        public async Task<BaseResponse> AddForexAsync(ForexRateInsertDto insertDto)
         {
-            return await HandleAsync(async () =>
+            return await ExecuteAsync(async () =>
             {
-                // Validate the input DTO
-                if (string.IsNullOrEmpty(currenyInsertDto.Code) || currenyInsertDto.ForexBuying <= 0 || currenyInsertDto.ForexSelling <= 0)
+                if (string.IsNullOrEmpty(insertDto.Code) || insertDto.ForexBuying <= 0 || insertDto.ForexSelling <= 0)
                 {
                     return new BaseResponse
                     {
@@ -23,26 +22,21 @@ namespace TcmbForexApi.WriteAPI.Business.Concrete
                     };
                 }
 
-                var currency = new Currency
+                var currency = new ForexRate
                 {
-                    Code = currenyInsertDto.Code,
-                    Name = currenyInsertDto.Name,
-                    Unit = currenyInsertDto.Unit,
-                    ForexBuying = currenyInsertDto.ForexBuying,
-                    ForexSelling = currenyInsertDto.ForexSelling,
-                    BanknoteBuying = currenyInsertDto.BanknoteBuying,
-                    BanknoteSelling = currenyInsertDto.BanknoteSelling,
-                    CrossRateUSD = currenyInsertDto.CrossRateUSD
+                    Code = insertDto.Code,
+                    Name = insertDto.Name,
+                    Unit = insertDto.Unit,
+                    ForexBuying = insertDto.ForexBuying,
+                    ForexSelling = insertDto.ForexSelling,
+                    BanknoteBuying = insertDto.BanknoteBuying,
+                    BanknoteSelling = insertDto.BanknoteSelling,
+                    CrossRateUSD = insertDto.CrossRateUSD
                 };
 
                 var result = await forexRepository.AddCurrencyAsync(currency);
                 
-                return new BaseResponse
-                {
-                    Success = result > 0,
-                    Data = result > 0 ? "Currency added successfully." : "Failed to add currency."
-                };
-
+                return result > 0 ? "Currency added successfully." : "Failed to add currency.";
             });
         }
     }
