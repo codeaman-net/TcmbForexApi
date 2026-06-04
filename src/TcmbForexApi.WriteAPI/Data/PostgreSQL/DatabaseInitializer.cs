@@ -14,7 +14,7 @@ namespace TcmbForexApi.WriteAPI.Data.PostgreSQL
 
             var scriptPath = Path.Combine(
                 AppContext.BaseDirectory,
-                "Database",
+                "Data",
                 "SqlScripts",
                 "CreateForexRates.sql");
 

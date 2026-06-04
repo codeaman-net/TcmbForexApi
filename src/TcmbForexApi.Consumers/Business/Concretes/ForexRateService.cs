@@ -8,28 +8,32 @@ namespace TcmbForexApi.Consumers.Business.Concretes
 {
     public class ForexRateService(IForexRateRepository forexRateRepository) : IForexRateService
     {
-        public async Task CreateRateAsync(RateCreateDto createDto)
+        public async Task<bool> CreateRateAsync(RateCreateDto createDto)
         {
-            var rateEntity = new Rate
+            try
             {
-                BanknoteBuying = createDto.BanknoteBuying,
-                BanknoteSelling = createDto.BanknoteSelling,
-                Code = createDto.Code,
-                CrossRateUSD = createDto.CrossRateUSD,
-                Date = createDto.Date,
-                ForexBuying = createDto.ForexBuying,
-                ForexSelling = createDto.ForexSelling,
-                Name = createDto.Name,
-                RateId = createDto.RateId,
-                Unit = createDto.Unit
-            };
+                var rateEntity = new Rate
+                {
+                    BanknoteBuying = createDto.BanknoteBuying,
+                    BanknoteSelling = createDto.BanknoteSelling,
+                    Code = createDto.Code,
+                    CrossRateUSD = createDto.CrossRateUSD,
+                    Date = createDto.Date,
+                    ForexBuying = createDto.ForexBuying,
+                    ForexSelling = createDto.ForexSelling,
+                    Name = createDto.Name,
+                    RateId = createDto.RateId,
+                    Unit = createDto.Unit
+                };
+    
+                await forexRateRepository.CreateAsync(rateEntity);
 
-            await forexRateRepository.CreateAsync(rateEntity);
-        }
-
-        public async Task DeleteRateAsync(RateDeleteDto deleteDto)
-        {
-            await forexRateRepository.DeleteAsync(i => i.RateId == deleteDto.RateId);
+                return await Task.FromResult(true);
+            }
+            catch (Exception)
+            {
+                return await Task.FromResult(false);
+            }
         }
     }
 }
