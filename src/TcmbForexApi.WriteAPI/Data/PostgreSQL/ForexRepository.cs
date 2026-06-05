@@ -5,7 +5,7 @@ namespace TcmbForexApi.WriteAPI.Data.PostgreSQL
 {
     public class ForexRepository(IConfiguration configuration, DatabaseInitializer databaseInitializer) : BaseRepository<ForexRate>(configuration), IForexRepository
     {
-        public async Task<int> AddCurrencyAsync(ForexRate currency)
+        public async Task<int> AddCurrencyAsync(ForexRate rate)
         {
             var tableExists = await CheckTableExists();
 
@@ -14,19 +14,20 @@ namespace TcmbForexApi.WriteAPI.Data.PostgreSQL
                 await databaseInitializer.InitializeAsync();
             }
 
-            string query = "INSERT INTO forex_rates (rate_date, code, unit, name, forex_buying, forex_selling, banknote_buying, banknote_selling, cross_rate_usd) VALUES (@Date, @Code, @Unit, @Name, @ForexBuying, @ForexSelling, @BanknoteBuying, @BanknoteSelling, @CrossRateUSD) ON CONFLICT (rate_date, code) DO NOTHING;";
+            string query = "INSERT INTO public.forex_rates (rate_date, code, unit, name, forex_buying, forex_selling, banknote_buying, banknote_selling, cross_rate_usd) VALUES (@Date, @Code, @Unit, @Name, @ForexBuying, @ForexSelling, @BanknoteBuying, @BanknoteSelling, @CrossRateUSD) ON CONFLICT (rate_date, code) DO NOTHING;";
 
+            var tempDatetime = rate.Date.ToDateTime(TimeOnly.MinValue);
             object parameters = new
             {
-                currency.Date,
-                currency.Code,
-                currency.Unit,
-                currency.Name,
-                currency.ForexBuying,
-                currency.ForexSelling,
-                currency.BanknoteBuying,
-                currency.BanknoteSelling,
-                currency.CrossRateUSD
+                Date = tempDatetime,
+                rate.Code,
+                rate.Unit,
+                rate.Name,
+                rate.ForexBuying,
+                rate.ForexSelling,
+                rate.BanknoteBuying,
+                rate.BanknoteSelling,
+                rate.CrossRateUSD
             };
             return await ExecuteAsync(query, parameters);
         }

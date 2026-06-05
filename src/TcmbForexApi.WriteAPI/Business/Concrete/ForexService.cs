@@ -24,6 +24,7 @@ namespace TcmbForexApi.WriteAPI.Business.Concrete
 
                 var currency = new ForexRate
                 {
+                    Date = insertDto.Date,
                     Code = insertDto.Code,
                     Name = insertDto.Name,
                     Unit = insertDto.Unit,

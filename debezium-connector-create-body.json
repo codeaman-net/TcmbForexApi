@@ -1,0 +1,22 @@
+{
+  "name": "rates-activity",
+  "config": {
+    "plugin.name": "pgoutput",
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres.tcmbforexapi.orb.local",
+    "database.port": "5432",
+    "database.user": "admin",
+    "database.password": "vZhDmz2B9rsUtuPkDBmLkb7sXsb3DF4",
+    "database.dbname": "DapperDB",
+    "table.include.list": "public.forex_rates",
+    "topic.prefix": "tcmb",
+    "decimal.handling.mode": "double",
+    "time.precision.mode": "connect",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+    "include.schema.changes": "false",
+    "transforms.filter.condition": "value.op == 'c'"
+  }
+}

@@ -4,7 +4,7 @@ using TcmbForexApi.Consumers.Core.Repositories;
 
 namespace TcmbForexApi.Consumers.Data.MongoDB
 {
-    public class ForexRateRepository(IOptions<MongoDbSettings> mongoDbSettings) : BaseRepository<Rate>(mongoDbSettings), IForexRateRepository
+    public class ForexRateRepository(MongoDbSettings mongoDbSettings) : BaseRepository<Rate>(mongoDbSettings), IForexRateRepository
     {
         
     }

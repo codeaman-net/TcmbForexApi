@@ -1,5 +1,3 @@
-using System.Globalization;
-using System.Xml.Linq;
 using FastEndpoints;
 using TcmbForexApi.WriteAPI.Business.Abstract;
 using TcmbForexApi.WriteAPI.Business.DTOs;
@@ -24,30 +22,40 @@ namespace TcmbForexApi.WriteAPI.Endpoints
                 await Send.StatusCodeAsync(404, cancellation: ct);
             }
 
+            string data = "Forex data inserted successfully.";
+
             var rates = await tcmbService.ReadForexRates(req.Date);
 
-            foreach (var rate in rates)
+            if (rates is null)
             {
-                var newRate = new ForexRateInsertDto
-                {
-                    Date = req.Date,
-                    Code = rate.Code,
-                    Name = rate.Name,
-                    Unit = rate.Unit,
-                    ForexBuying = rate.ForexBuying,
-                    ForexSelling = rate.ForexSelling,
-                    BanknoteBuying = rate.BanknoteBuying,
-                    BanknoteSelling = rate.BanknoteSelling,
-                    CrossRateUSD = rate.CrossRateUSD
-                };
+                data = "No rates found!";
+            }
 
-                await forexService.AddForexAsync(newRate);
+            else
+            {
+                foreach (var rate in rates)
+                {
+                    var newRate = new ForexRateInsertDto
+                    {
+                        Date = req.Date,
+                        Code = rate.Code,
+                        Name = rate.Name,
+                        Unit = rate.Unit,
+                        ForexBuying = rate.ForexBuying,
+                        ForexSelling = rate.ForexSelling,
+                        BanknoteBuying = rate.BanknoteBuying,
+                        BanknoteSelling = rate.BanknoteSelling,
+                        CrossRateUSD = rate.CrossRateUSD
+                    };
+
+                    await forexService.AddForexAsync(newRate);
+                }
             }
 
             await Send.OkAsync(new BaseResponse
             {
                 Success = true,
-                Data = "Forex data inserted successfully."
+                Data = data
             }, cancellation: ct);
         }
     }

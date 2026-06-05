@@ -16,10 +16,10 @@ namespace TcmbForexApi.WriteAPI.Data.PostgreSQL
                 using var connection = new NpgsqlConnection(_connectionString);
                 return connection.Execute(command, parameters);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                Console.WriteLine($"TcmbForexApi.WriteAPI.Data.PostgreSQL.BaseRepository -> Execute() throws an error. Message is {ex.Message}");
+                return 0;
             }
         }
 
@@ -30,10 +30,10 @@ namespace TcmbForexApi.WriteAPI.Data.PostgreSQL
                 using var connection = new NpgsqlConnection(_connectionString);
                 return await connection.ExecuteAsync(command, parameters);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                Console.WriteLine($"TcmbForexApi.WriteAPI.Data.PostgreSQL.BaseRepository -> ExecuteAsync() throws an error. Message is {ex.Message}");
+                return 0;
             }
         }
 
@@ -44,10 +44,10 @@ namespace TcmbForexApi.WriteAPI.Data.PostgreSQL
                 using var connection = new NpgsqlConnection(_connectionString);
                 return connection.QueryFirstOrDefault<TEntity>(query, parameters);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                Console.WriteLine($"TcmbForexApi.WriteAPI.Data.PostgreSQL.BaseRepository -> QueryFirstOrDefault() throws an error. Message is {ex.Message}");
+                return null;
             }
         }
 
@@ -58,10 +58,10 @@ namespace TcmbForexApi.WriteAPI.Data.PostgreSQL
                 using var connection = new NpgsqlConnection(_connectionString);
                 return await connection.QueryFirstOrDefaultAsync<TEntity>(query, parameters);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                Console.WriteLine($"TcmbForexApi.WriteAPI.Data.PostgreSQL.BaseRepository -> QueryFirstOrDefaultAsync() throws an error. Message is {ex.Message}");
+                return null;
             }
         }
 
@@ -72,10 +72,10 @@ namespace TcmbForexApi.WriteAPI.Data.PostgreSQL
                 using var connection = new NpgsqlConnection(_connectionString);
                 return connection.Query<TEntity>(query, parameters);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                Console.WriteLine($"TcmbForexApi.WriteAPI.Data.PostgreSQL.BaseRepository -> Query() throws an error. Message is {ex.Message}");
+                return null;
             }
         }
 
@@ -86,10 +86,10 @@ namespace TcmbForexApi.WriteAPI.Data.PostgreSQL
                 using var connection = new NpgsqlConnection(_connectionString);
                 return await connection.QueryAsync<TEntity>(query, parameters);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                Console.WriteLine($"TcmbForexApi.WriteAPI.Data.PostgreSQL.BaseRepository -> QueryAsync() throws an error. Message is {ex.Message}");
+                return null;
             }
         }
     }

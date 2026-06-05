@@ -1,4 +1,3 @@
-using System.Xml.Linq;
 using TcmbForexApi.WriteAPI.Business.DTOs;
 
 namespace TcmbForexApi.WriteAPI.Infrastructure.Abstracts

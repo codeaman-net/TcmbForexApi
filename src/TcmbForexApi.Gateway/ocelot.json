@@ -1,6 +1,6 @@
 {
     "GlobalConfiguration": {
-        "BaseUrl": "https://gatewap.api.tcmbforexapi.orb.local:5277"
+        "BaseUrl": "https://gatewap.api.tcmbforexapi.orb.local"
     },
     "Routes": [
         {
@@ -13,7 +13,7 @@
             "DownstreamHostAndPorts": [
                 {
                     "Host": "read.api.tcmbforexapi.orb.local",
-                    "Port": 5228
+                    "Port": 443
                 }
             ]
         },
@@ -27,7 +27,7 @@
             "DownstreamHostAndPorts": [
                 {
                     "Host": "read.api.tcmbforexapi.orb.local",
-                    "Port": 5228
+                    "Port": 443
                 }
             ]
         },
@@ -41,7 +41,7 @@
             "DownstreamHostAndPorts": [
                 {
                     "Host": "read.api.tcmbforexapi.orb.local",
-                    "Port": 5228
+                    "Port": 443
                 }
             ]
         },
@@ -55,7 +55,7 @@
             "DownstreamHostAndPorts": [
                 {
                     "Host": "write.api.tcmbforexapi.orb.local",
-                    "Port": 5067
+                    "Port": 443
                 }
             ]
         },
@@ -69,7 +69,7 @@
             "DownstreamHostAndPorts": [
                 {
                     "Host": "write.api.tcmbforexapi.orb.local",
-                    "Port": 5067
+                    "Port": 443
                 }
             ]
         }

@@ -70,8 +70,7 @@ nunit-*.xml
 
 Temp/
 .DS_Store
-src/TcmbForexApi.WriteAPI/appsettings.Development.json
-src/TcmbForexApi.ReadAPI/appsettings.Development.json
-src/TcmbForexApi.Consumers/appsettings.Development.json
-src/TcmbForexApi.Gateway/appsettings.Development.json
-src/TcmbForexApi.Gateway/ocelot.Development.json
+
+# Ignore dev json files
+appsettings.Development.json
+ocelot.Development.json

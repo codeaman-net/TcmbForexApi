@@ -151,5 +151,7 @@ services:
       dockerfile: src/TcmbForexApi.Consumers/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+    depends_on:
+      - kafka
 
   

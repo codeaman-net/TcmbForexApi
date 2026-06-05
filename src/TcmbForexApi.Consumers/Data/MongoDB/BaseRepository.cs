@@ -9,11 +9,11 @@ namespace TcmbForexApi.Consumers.Data.MongoDB
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity, new()
     {
         private readonly IMongoCollection<TEntity> _collection;
-        public BaseRepository(IOptions<MongoDbSettings> options)
+        public BaseRepository(MongoDbSettings dbSettings)
         {
-            var client = new MongoClient(options.Value.ConnectionString);
-            var database = client.GetDatabase(options.Value.DatabaseName);
-            _collection = database.GetCollection<TEntity>(options.Value.CollectionName);
+            var client = new MongoClient(dbSettings.ConnectionString);
+            var database = client.GetDatabase(dbSettings.DatabaseName);
+            _collection = database.GetCollection<TEntity>(dbSettings.CollectionName);
         }
 
         public async Task CreateAsync(TEntity entity) => await _collection.InsertOneAsync(entity);
