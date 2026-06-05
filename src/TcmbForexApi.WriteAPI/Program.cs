@@ -2,7 +2,6 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FastEndpoints;
 using TcmbForexApi.WriteAPI;
-using TcmbForexApi.WriteAPI.Data.PostgreSQL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,12 +18,6 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
     });
 
 var app = builder.Build();
-
-using (var scope = app.Services.CreateScope())
-{
-    var initializer = scope.ServiceProvider.GetRequiredService<DatabaseInitializer>();
-    await initializer.InitializeAsync();
-}
 
 app.UseHttpsRedirection();
 app.UseFastEndpoints();

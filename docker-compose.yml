@@ -90,8 +90,8 @@ services:
       - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: password
-      MONGO_INITDB_DATABASE: NewsReadDB
+      MONGO_INITDB_ROOT_PASSWORD: eD7AtQToy8fzxdxfofcH3nkez3qkfWpV
+      MONGO_INITDB_DATABASE: ForexData
     volumes:
       - ./Temp/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
@@ -101,12 +101,12 @@ services:
     ports:
       - 8081:8081
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 2MYR3uiphKnrF3ZWMMAVU8PpENyFDbBR
       ME_CONFIG_BASICAUTH_USERNAME: 'root'
-      ME_CONFIG_BASICAUTH_PASSWORD: 'password'
+      ME_CONFIG_BASICAUTH_PASSWORD: 'eD7AtQToy8fzxdxfofcH3nkez3qkfWpV'
       ME_CONFIG_MONGODB_ENABLE_ADMIN: 'true'
-      ME_CONFIG_MONGODB_URL: mongodb://root:password@mongo:27017/
+      ME_CONFIG_MONGODB_URL: mongodb://root:eD7AtQToy8fzxdxfofcH3nkez3qkfWpV@mongo:27017/
 
   gatewap.api:
     container_name: tcmb-forex-gateway-api
@@ -129,6 +129,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
     ports:
       - "5067:80"
+    depends_on:
+      - postgres
 
   read.api:
     container_name: tcmb-forex-read-api

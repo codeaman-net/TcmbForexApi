@@ -1,6 +1,6 @@
 {
     "GlobalConfiguration": {
-        "BaseUrl": "http://host.docker.internal:5277"
+        "BaseUrl": "https://gatewap.api.tcmbforexapi.orb.local:5277"
     },
     "Routes": [
         {
@@ -9,10 +9,10 @@
             ],
             "UpstreamPathTemplate": "/gateway/forex-rates?code={code}",
             "DownstreamPathTemplate": "/read/forex-by-code?code={code}",
-            "DownstreamScheme": "http",
+            "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "host.docker.internal",
+                    "Host": "read.api.tcmbforexapi.orb.local",
                     "Port": 5228
                 }
             ]
@@ -23,10 +23,10 @@
             ],
             "UpstreamPathTemplate": "/gateway/forex-rates?date={date}",
             "DownstreamPathTemplate": "/read/forex-by-date?date={date}",
-            "DownstreamScheme": "http",
+            "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "host.docker.internal",
+                    "Host": "read.api.tcmbforexapi.orb.local",
                     "Port": 5228
                 }
             ]
@@ -37,10 +37,10 @@
             ],
             "UpstreamPathTemplate": "/gateway/forex-rates?code={code}&date={date}",
             "DownstreamPathTemplate": "/read/forex-by-code-and-date?code={code}&date={date}",
-            "DownstreamScheme": "http",
+            "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "host.docker.internal",
+                    "Host": "read.api.tcmbforexapi.orb.local",
                     "Port": 5228
                 }
             ]
@@ -51,10 +51,10 @@
             ],
             "UpstreamPathTemplate": "/gateway/write-forex-latest",
             "DownstreamPathTemplate": "/write/forex-latest",
-            "DownstreamScheme": "http",
+            "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "host.docker.internal",
+                    "Host": "write.api.tcmbforexapi.orb.local",
                     "Port": 5067
                 }
             ]
@@ -65,10 +65,10 @@
             ],
             "UpstreamPathTemplate": "/gateway/write-custom-forex",
             "DownstreamPathTemplate": "/write/forex-custom",
-            "DownstreamScheme": "http",
+            "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "host.docker.internal",
+                    "Host": "write.api.tcmbforexapi.orb.local",
                     "Port": 5067
                 }
             ]
