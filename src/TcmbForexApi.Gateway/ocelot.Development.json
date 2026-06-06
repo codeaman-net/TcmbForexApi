@@ -35,7 +35,7 @@
             "UpstreamHttpMethod": [
                 "Get"
             ],
-            "UpstreamPathTemplate": "/gateway/forex-rates?code={code}&date={date}",
+            "UpstreamPathTemplate": "/gateway/forex-rates-by-code-and-date?code={code}&date={date}",
             "DownstreamPathTemplate": "/read/forex-by-code-and-date?code={code}&date={date}",
             "DownstreamScheme": "https",
             "DownstreamHostAndPorts": [

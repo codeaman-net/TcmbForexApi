@@ -10,7 +10,7 @@ services:
       - POSTGRES_PASSWORD=vZhDmz2B9rsUtuPkDBmLkb7sXsb3DF4
       - POSTGRES_DB=DapperDB
     volumes:
-      - ./Temp/postgres/data:/var/lib/postgresql
+      - ./temp/postgres/data:/var/lib/postgresql
     command: 
       - "postgres"
       - "-c"
@@ -25,7 +25,7 @@ services:
       - "2888:2888"
       - "3888:3888"
     volumes:
-      - ./Temp/zookeeper_data:/zookeeper_data
+      - ./temp/zookeeper_data:/zookeeper_data
 
   kafka:
     image: debezium/kafka:2.7.3.Final
@@ -38,15 +38,15 @@ services:
     environment:
       ZOOKEEPER_CONNECT: 'zookeeper:2181'
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092,OUTSIDE://0.0.0.0:9092
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,OUTSIDE://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,OUTSIDE://kafka.tcmbforexapi.orb.local:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,OUTSIDE:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
     volumes:
-      - ./Temp/kafka_data:/kafka/data
-      - ./Temp/kafka_logs:/kafka/logs
-      - ./Temp/kafka_config:/kafka/config
+      - ./temp/kafka_data:/kafka/data
+      - ./temp/kafka_logs:/kafka/logs
+      - ./temp/kafka_config:/kafka/config
 
-  connect:
+  kafka-connect:
     image: debezium/connect:2.7.3.Final
     platform: linux/x86_64
     container_name: connect
@@ -55,9 +55,9 @@ services:
     environment:
       - BOOTSTRAP_SERVERS=kafka:29092
       - GROUP_ID=1
-      - CONFIG_STORAGE_TOPIC=my_connect_configs
-      - OFFSET_STORAGE_TOPIC=my_connect_offsets
-      - STATUS_STORAGE_TOPIC=my_connect_statuses
+      - CONFIG_STORAGE_TOPIC=connect_configs
+      - OFFSET_STORAGE_TOPIC=connect_offsets
+      - STATUS_STORAGE_TOPIC=connect_statuses
     depends_on:
       - zookeeper
       - kafka
@@ -93,7 +93,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: eD7AtQToy8fzxdxfofcH3nkez3qkfWpV
       MONGO_INITDB_DATABASE: ForexData
     volumes:
-      - ./Temp/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./temp/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
   mongo-express:
     image: mongo-express

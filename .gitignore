@@ -68,7 +68,7 @@ nunit-*.xml
 # Built Visual Studio Code Extensions
 *.vsix
 
-Temp/
+temp/
 .DS_Store
 
 # Ignore dev json files

@@ -63,6 +63,7 @@ while (true)
     {
         try
         {
+            var tempRateDate = new DateTime(1970, 1, 1).AddDays(queueData.After.RateDate);
             var createDto = new RateCreateDto
             {
                 RateId = queueData.After.Id,
@@ -70,7 +71,7 @@ while (true)
                 BanknoteBuying = queueData.After.BanknoteBuying,
                 BanknoteSelling = queueData.After.BanknoteSelling,
                 CrossRateUSD = queueData.After.CrossRateUSD,
-                Date = queueData.After.RateDate,
+                Date = DateOnly.FromDateTime(tempRateDate),
                 ForexBuying = queueData.After.ForexBuying,
                 ForexSelling = queueData.After.ForexSelling,
                 Name = queueData.After.Name,

@@ -4,34 +4,34 @@ namespace TcmbForexApi.Consumers.Core.Models
 {
     public class RateMessageModel
     {
-        [JsonProperty(nameof(Id))]
+        [JsonProperty("id")]
         public int Id { get; set; }
 
-        [JsonProperty(nameof(RateDate))]
-        public DateOnly RateDate { get; set; }
+        [JsonProperty("rate_date")]
+        public int RateDate { get; set; }
         
-        [JsonProperty(nameof(Code))]
+        [JsonProperty("code")]
         public string Code { get; set; } = string.Empty;
         
-        [JsonProperty(nameof(Unit))]
+        [JsonProperty("unit")]
         public int Unit { get; set; }
         
-        [JsonProperty(nameof(Name))]
+        [JsonProperty("name")]
         public string Name { get; set; } = string.Empty;
         
-        [JsonProperty(nameof(ForexBuying))]
+        [JsonProperty("forex_buying")]
         public decimal ForexBuying { get; set; }
         
-        [JsonProperty(nameof(ForexSelling))]
+        [JsonProperty("forex_selling")]
         public decimal ForexSelling { get; set; }
         
-        [JsonProperty(nameof(BanknoteBuying))]
+        [JsonProperty("banknote_buying")]
         public decimal BanknoteBuying { get; set; }
         
-        [JsonProperty(nameof(BanknoteSelling))]
+        [JsonProperty("banknote_selling")]
         public decimal BanknoteSelling { get; set; }
         
-        [JsonProperty(nameof(CrossRateUSD))]
+        [JsonProperty("cross_rate_usd")]
         public decimal? CrossRateUSD { get; set; }
     }
 }
